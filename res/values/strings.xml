@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">dbsigurd_MyToDoList</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="ToDo">To do shown here</string>
+    <string name="Button">Add</string>
+    <string name="toDoHint">Enter a to do!</string>
+
+</resources>
