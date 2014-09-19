@@ -12,6 +12,7 @@
         android:id="@+id/toDoListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/MassOptionsButton"
         android:layout_below="@+id/ToDoBox" >
 
     </ListView>
@@ -37,5 +38,22 @@
         android:layout_alignParentRight="true"
         android:onClick="sendMessage"
         android:text="@string/Button" />
+
+    <Button
+        android:id="@+id/MassOptionsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/massOptionButton" />
+
+    <Button
+        android:id="@+id/ViewArchivedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/toDoListView"
+        android:onClick="archivedLauncher"
+        android:text="@string/VAB" />
 
 </RelativeLayout>

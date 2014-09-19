@@ -8,11 +8,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
+        android:layout_toLeftOf="@+id/optionsButton"
         android:checked="@bool/isDone"
-        
+       
         android:text="@string/ToDo" />
+
+    <Button
+        android:id="@+id/optionsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/toDoCheckBox"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:onClick="openOptions"
+        android:text="@string/optionButton"
+        
+        android:textSize="12sp" />
+   
+        
+        
 
 </RelativeLayout>

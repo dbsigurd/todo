@@ -7,5 +7,18 @@
     <string name="ToDo">To do shown here</string>
     <string name="Button">Add</string>
     <string name="toDoHint">Enter a to do!</string>
-
+    <string name="optionButton">&#8230;</string>
+    <string name="title_activity_display_options">DisplayOptions</string>
+    <string name="title_activity_options">Options</string>
+    <string name="DeleteButton">Delete</string>
+    <string name="CopyButton">Copy</string>
+    <string name="EmailButton">Email</string>
+    <string name="ArchiveButton">Archive</string>
+    <string name="CancelButton">Cancel</string>
+    <string name="massOptionButton">More options!</string>
+    <string name="VAB">View Archives</string>
+    <string name="title_activity_view_archive">ViewArchive</string>
+    <string name="AVT">Archived To-Dos</string>
+	<string name="Return">Return</string>
+	<string name="ArchivedOptions">Options</string>
 </resources>
