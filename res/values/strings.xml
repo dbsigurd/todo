@@ -19,6 +19,14 @@
     <string name="VAB">View Archives</string>
     <string name="title_activity_view_archive">ViewArchive</string>
     <string name="AVT">Archived To-Dos</string>
-	<string name="Return">Return</string>
-	<string name="ArchivedOptions">Options</string>
+    <string name="Return">Return</string>
+    <string name="ArchivedOptions">Options</string>
+    <string name="title_activity_mass_options">MassOptions</string>
+    <string name="massOptions">Options to edit mulitple to-dos!</string>
+    <string name="deleteAllButton">Delete All</string>
+    <string name="goBack">Unarchived</string>
+    <string name="title_activity_archived_options">ArchivedOptions</string>
+    <string name="UnarchiveButton">Unarchive</string>
+    <string name="title_activity_archived__options">Archived_Options</string>
+
 </resources>

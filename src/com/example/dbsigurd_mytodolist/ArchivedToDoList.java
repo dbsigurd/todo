@@ -19,22 +19,31 @@ public class ArchivedToDoList {
 	return firstInstance;
 	}
 	
-	
-	
 	public ToDoItem getToDoItem(int x){
 		return firstInstance.archivedToDos.get(x);
 	}
+	public List<ToDoItem> getToDoList(){
+		return archivedToDos;
+	}
 	
-	public static void setToDoItem(ToDoItem y){
-		firstInstance.archivedToDos.add(y);
+	public void add(ToDoItem y){
+		String newString =y.getToDo();
+		Boolean newBool = y.isDone();
+		ToDoItem newToDo = new ToDoItem(newString,newBool);
+		firstInstance.archivedToDos.add(0,newToDo);
 		
 	}
-	public void setNewToDoItem(String toDo, boolean isDone){
+	public void addnew(int loc, String toDo, boolean isDone){
 		firstInstance.archivedToDos.add(new ToDoItem(toDo,isDone));
-		
 	}
-	public void deleteToDoItem(ToDoItem z){
+	public void remove(ToDoItem z){
 		firstInstance.archivedToDos.remove(z);
+	}
+	public int size(){
+		return firstInstance.archivedToDos.size();
+	}
+	public void deleteAll(){
+		firstInstance.archivedToDos.clear();
 	}
 	
 }

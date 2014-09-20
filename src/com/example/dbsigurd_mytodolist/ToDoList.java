@@ -46,5 +46,8 @@ public class ToDoList {
 	public int size(){
 		return firstInstance.ToDos.size();
 	}
+	public void deleteAll(){
+		firstInstance.ToDos.clear();
+	}
 	
 }

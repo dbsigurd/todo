@@ -1,7 +1,6 @@
 package com.example.dbsigurd_mytodolist;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -22,7 +20,8 @@ public class MainActivity extends Activity {
 	public static final String EXTRA_ANSWER = "Choice";
 	public final static String EXTRA_MESSAGE = "com.example.dbsigurd_mytodolist";
 	ToDoList toDos = ToDoList.getInstance();
-	public List<ToDoItem> toDoViewList = new ArrayList<ToDoItem>();
+	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
+	//public List<ToDoItem> toDoViewList = new ArrayList<ToDoItem>();
     //public ToDoItem toEdit;
     public ToDoItem currentToDo;
     //public int toEditPosition;
@@ -39,23 +38,6 @@ public class MainActivity extends Activity {
         
         
     }
-
-
-    
-    
-    
-	public void populateToDoList() {
-		/*toDoViewList.clear();
-		Toast.makeText(MainActivity.this,"" + toDos.size(),Toast.LENGTH_LONG).show();
-		for(int i =0; i < (toDos.size()); i++){
-			ToDoItem nextOnList = toDos.getToDoItem(i);
-			
-			toDoViewList.add(nextOnList);
-		}*/
-		//toDoViewList.add(milk);
-		//toDos.add(milk);
-		}
-	
 	
 	//use array adapter
 	public void populateListView() {
@@ -125,8 +107,7 @@ public class MainActivity extends Activity {
 		
 
 	public void openOptions(int toEditPosition) {
-		Toast.makeText(MainActivity.this,""+toEditPosition,Toast.LENGTH_SHORT).show();
-		Toast.makeText(MainActivity.this,toDos.getToDoItem(toEditPosition).getToDo(),Toast.LENGTH_LONG).show();
+		
 		Intent intent = new Intent(this,Options.class);
 		
 		// from here ill return an int and edit accordingly
@@ -177,8 +158,19 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	public void openMassOptions(View view){
+		Intent massIntent = new Intent(this,MassOptions.class);
+		startActivityForResult(massIntent,2);
+		
+		
+	}
+	public void archivedLauncher(View v){
+		Intent archivedIntent = new Intent (this, ViewArchive.class);
+		startActivity(archivedIntent);
+	}
+	
 }
-
+	
 	/*public void archivedLauncher(View v) {
 		Intent intent = new Intent(this,ViewArchive.class);
 		

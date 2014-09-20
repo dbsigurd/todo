@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Options extends MainActivity {
+public class Archived_Options extends Activity {
 	public static final String EXTRA_CHOICE = "the Choice";
 	public int positionChosen;
 	ToDoList toDos = ToDoList.getInstance();
@@ -19,22 +19,18 @@ public class Options extends MainActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_options);
-		
-		   // Get the message from the intent
-	    Intent intent = getIntent();
+		setContentView(R.layout.activity_archived__options);
+		Intent intent = getIntent();
 	    int positionChosen = intent.getIntExtra(MainActivity.EXTRA_MESSAGE,0);
-	    toEdit = toDos.getToDoItem(positionChosen);
+	    toEdit = archivedToDos.getToDoItem(positionChosen);
 	    TextView toDoChosen = (TextView) findViewById(R.id.clicked);
-	    toDoChosen.setText(toDos.getToDoItem(positionChosen).getToDo());
-	    
+	    toDoChosen.setText(archivedToDos.getToDoItem(positionChosen).getToDo());
 	    
 	    setupCancel();
 	    setupDelete();
-	    setupArchive();
+	    setupUnarchive();
 	    setupEmail();
 	}
-	
 	private void setupEmail() {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
@@ -54,9 +50,9 @@ public class Options extends MainActivity {
 		});
 	}
 
-	private void setupArchive() {
+	private void setupUnarchive() {
 		// TODO Auto-generated method stub
-		Button btn = (Button) findViewById(R.id.ArchiveButton);
+		Button btn = (Button) findViewById(R.id.UnarchiveButton);
 		btn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -64,10 +60,10 @@ public class Options extends MainActivity {
 				int choiceClicked = 3;
 				Intent intent = new Intent();
 				String pop = toEdit.getToDo();
-				Toast.makeText(Options.this,pop+" has been archived",Toast.LENGTH_LONG).show();
+				Toast.makeText(Archived_Options.this,pop+" has been Unarchived",Toast.LENGTH_LONG).show();
 				//add to Archived list
-				archivedToDos.add(toEdit);
-				toDos.remove(toEdit);
+				toDos.add(toEdit);
+				archivedToDos.remove(toEdit);
 				intent.putExtra(EXTRA_CHOICE, choiceClicked);
 				setResult(Activity.RESULT_OK,intent);
 				finish();
@@ -86,7 +82,7 @@ public class Options extends MainActivity {
 			public void onClick(View v) {
 				int choiceClicked = 2;
 				Intent intent = new Intent();
-				toDos.remove(toEdit);
+				archivedToDos.remove(toEdit);
 				intent.putExtra(EXTRA_CHOICE, choiceClicked);
 				setResult(Activity.RESULT_OK,intent);
 				finish();
@@ -101,7 +97,7 @@ public class Options extends MainActivity {
 		int choiceClicked = 1;
 		Intent intent = new Intent();
 		
-		toDos.add(toEdit);
+		archivedToDos.add(toEdit);
 		intent.putExtra(EXTRA_CHOICE, choiceClicked);
 		setResult(Activity.RESULT_OK,intent);
 		finish();
@@ -124,11 +120,10 @@ public class Options extends MainActivity {
 			}
 		});
 	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.options, menu);
+		getMenuInflater().inflate(R.menu.archived__options, menu);
 		return true;
 	}
 

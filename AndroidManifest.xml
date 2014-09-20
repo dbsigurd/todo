@@ -34,6 +34,18 @@
             android:name=".ViewArchive"
             android:label="@string/title_activity_view_archive" >
         </activity>
+        <activity
+            android:name=".MassOptions"
+            android:label="@string/title_activity_mass_options" >
+        </activity>
+        <activity
+            android:name=".ArchivedOptions"
+            android:label="@string/title_activity_archived_options" >
+        </activity>
+        <activity
+            android:name=".Archived_Options"
+            android:label="@string/title_activity_archived__options" >
+        </activity>
     </application>
 
 </manifest>

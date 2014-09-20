@@ -8,41 +8,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.dbsigurd_mytodolist.ViewArchive" >
 
-    <TextView
-        android:id="@+id/ArchivedTextView"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/MassArchivedOptions"
+        android:layout_width="145dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/AVT"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/massOptionButton"
+        />
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/archivedListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ReturnButton"
-        android:layout_below="@+id/ArchivedTextView"
-        android:layout_centerHorizontal="true" >
+        android:layout_above="@id/MassArchivedOptions"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
 
     </ListView>
 
     <Button
-        android:id="@+id/ReturnButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/ViewUnarchived"
+        android:layout_width="145dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listView1"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="19dp"
-        android:text="@string/Return" />
-
-    <Button
-        android:id="@+id/ArchivedOptions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/listView1"
-        android:layout_below="@+id/listView1"
-        android:layout_marginRight="39dp"
-        android:text="@string/ArchivedOptions" />
+        android:layout_alignParentRight="true"
+        android:onClick="goBack"
+        android:text="@string/goBack"
+    	 />
 
 </RelativeLayout>

@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.dbsigurd_mytodolist.Archived_Options" >
+
+    <TextView
+        android:id="@+id/clicked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+	<Button
+        android:id="@+id/DeleteButton"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/clicked"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:onClick="Delete"
+        android:text="@string/DeleteButton" />
+
+    <Button
+        android:id="@+id/CopyButton"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/DeleteButton"
+        android:layout_below="@+id/DeleteButton"
+        android:layout_marginTop="16dp"
+        android:onClick="Copy"
+        android:text="@string/CopyButton" />
+
+    <Button
+        android:id="@+id/UnarchiveButton"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/CopyButton"
+        android:layout_below="@+id/CopyButton"
+        android:layout_marginTop="16dp"
+        android:onClick="Archive"
+        android:text="@string/UnarchiveButton" />
+
+    <Button
+        android:id="@+id/EmailButton"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/UnarchiveButton"
+        android:layout_below="@+id/UnarchiveButton"
+        android:layout_marginTop="16dp"
+      
+        android:text="@string/EmailButton" />
+    <Button
+        android:id="@+id/CancelButton"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/EmailButton"
+        android:layout_below="@+id/EmailButton"
+        android:layout_marginTop="16dp"
+      
+        android:text="@string/CancelButton" />
+
+</RelativeLayout>
