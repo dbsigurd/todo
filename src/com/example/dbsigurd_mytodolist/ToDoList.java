@@ -6,6 +6,7 @@ import java.util.List;
 
 
 public class ToDoList {
+	
 	private static ToDoList firstInstance = null;
 	private List<ToDoItem> ToDos = new ArrayList<ToDoItem>();
 	private ToDoList() {};
@@ -25,9 +26,15 @@ public class ToDoList {
 	public ToDoItem getToDoItem(int x){
 		return firstInstance.ToDos.get(x);
 	}
+	public List<ToDoItem> getToDoList(){
+		return ToDos;
+	}
 	
 	public void add(ToDoItem y){
-		firstInstance.ToDos.add(0,y);
+		String newString =y.getToDo();
+		Boolean newBool = y.isDone();
+		ToDoItem newToDo = new ToDoItem(newString,newBool);
+		firstInstance.ToDos.add(0,newToDo);
 		
 	}
 	public void addnew(int loc, String toDo, boolean isDone){

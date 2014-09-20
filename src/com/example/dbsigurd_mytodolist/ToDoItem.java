@@ -23,4 +23,11 @@ public class ToDoItem {
 	public boolean isDone(){
 		return isDone;
 	}
+	public void isDoneFlip(){
+		if(isDone == true){
+			this.isDone = false;
+		}else{
+			this.isDone = true;
+		}
+	}
 }

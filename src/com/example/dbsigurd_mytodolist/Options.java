@@ -8,10 +8,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Options extends MainActivity {
 	public static final String EXTRA_CHOICE = "the Choice";
-	public String message;
+	public int positionChosen;
+	ToDoList toDos = ToDoList.getInstance();
+	ToDoItem toEdit;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,11 +22,12 @@ public class Options extends MainActivity {
 		
 		   // Get the message from the intent
 	    Intent intent = getIntent();
-	    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+	    int positionChosen = intent.getIntExtra(MainActivity.EXTRA_MESSAGE,0);
+	    toEdit = toDos.getToDoItem(positionChosen);
 	    TextView toDoChosen = (TextView) findViewById(R.id.clicked);
-	    toDoChosen.setText(message);
+	    toDoChosen.setText(toDos.getToDoItem(positionChosen).getToDo());
 	    
-	    setupCopy();
+	    
 	    setupCancel();
 	    setupDelete();
 	    setupArchive();
@@ -58,6 +62,11 @@ public class Options extends MainActivity {
 			public void onClick(View v) {
 				int choiceClicked = 3;
 				Intent intent = new Intent();
+				String pop = toEdit.getToDo();
+				Toast.makeText(Options.this,pop+" has been archived",Toast.LENGTH_LONG).show();
+				//add to Archived list
+				ArchivedToDoList.setToDoItem(toEdit);
+				toDos.remove(toEdit);
 				intent.putExtra(EXTRA_CHOICE, choiceClicked);
 				setResult(Activity.RESULT_OK,intent);
 				finish();
@@ -76,6 +85,7 @@ public class Options extends MainActivity {
 			public void onClick(View v) {
 				int choiceClicked = 2;
 				Intent intent = new Intent();
+				toDos.remove(toEdit);
 				intent.putExtra(EXTRA_CHOICE, choiceClicked);
 				setResult(Activity.RESULT_OK,intent);
 				finish();
@@ -86,23 +96,19 @@ public class Options extends MainActivity {
 	}
 
 
-	public void setupCopy(){
-		Button btn = (Button) findViewById(R.id.CopyButton);
-		btn.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				int choiceClicked = 1;
-				Intent intent = new Intent();
-				intent.putExtra(EXTRA_CHOICE, choiceClicked);
-				setResult(Activity.RESULT_OK,intent);
-				finish();
+	public void Copy(View view){	
+		int choiceClicked = 1;
+		Intent intent = new Intent();
+		
+		toDos.add(toEdit);
+		intent.putExtra(EXTRA_CHOICE, choiceClicked);
+		setResult(Activity.RESULT_OK,intent);
+		finish();
 				// TODO Auto-generated method stub
 				
-			}
-		});
+		
 			
-		}
+	}
 	private void setupCancel() {
 		Button btn = (Button) findViewById(R.id.CancelButton);
 		btn.setOnClickListener(new View.OnClickListener() {

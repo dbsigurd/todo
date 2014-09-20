@@ -23,9 +23,9 @@ public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.example.dbsigurd_mytodolist";
 	ToDoList toDos = ToDoList.getInstance();
 	public List<ToDoItem> toDoViewList = new ArrayList<ToDoItem>();
-    public ToDoItem toEdit;
+    //public ToDoItem toEdit;
     public ToDoItem currentToDo;
-    public int toEditPosition;
+    //public int toEditPosition;
     public int choiceResult;
 	public ToDoItem milk = new ToDoItem("get milk", true);
     @Override
@@ -33,7 +33,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //load todoList
-        toDos.add(milk);
+        
+        
         populateListView();
         
         
@@ -41,36 +42,37 @@ public class MainActivity extends Activity {
 
 
     
-
+    
     
 	public void populateToDoList() {
-		toDoViewList.clear();
+		/*toDoViewList.clear();
 		Toast.makeText(MainActivity.this,"" + toDos.size(),Toast.LENGTH_LONG).show();
 		for(int i =0; i < (toDos.size()); i++){
 			ToDoItem nextOnList = toDos.getToDoItem(i);
 			
 			toDoViewList.add(nextOnList);
-		}
+		}*/
 		//toDoViewList.add(milk);
+		//toDos.add(milk);
 		}
 	
 	
 	//use array adapter
 	public void populateListView() {
-		populateToDoList();
+		//populateToDoList();
 		// TODO Auto-generated method stub
 		ArrayAdapter<ToDoItem> adapter = new MyListAdapter();
 		//ArratAdapter<ToDoItem> adapter = new MyListAdapter();
 		ListView list = (ListView) findViewById(R.id.toDoListView);
 		list.setAdapter(adapter);
 	}
-	public class MyListAdapter extends ArrayAdapter<ToDoItem>{
+	private class MyListAdapter extends ArrayAdapter<ToDoItem>{
 		public MyListAdapter(){
-			super(MainActivity.this, R.layout.item_view,toDoViewList);
+			super(MainActivity.this, R.layout.item_view,toDos.getToDoList());
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView( int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
 			// if null view
 			View itemView = convertView;
@@ -78,22 +80,31 @@ public class MainActivity extends Activity {
 				itemView = getLayoutInflater().inflate(R.layout.item_view, parent, false);
 			}
 			//Find the Todo
-
-			ToDoItem currentToDo = toDoViewList.get(position);
-			toEdit = currentToDo;
-			toEditPosition = position;
+			
+			ToDoItem currentToDo = toDos.getToDoItem(position);
+			//final ToDoItem toEdit = currentToDo;
+			final int toEditPosition = position;
 			CheckBox displayBox = (CheckBox) itemView.findViewById(R.id.toDoCheckBox);
 			displayBox.setText(currentToDo.getToDo());
 			displayBox.setChecked(currentToDo.isDone());
+			//CheckBox chxBox = (CheckBox) itemView.findViewById(R.id.toDoCheckBox);
+			displayBox.setOnClickListener(new OnClickListener(){
+				public void onClick(View view){
+					toDos.getToDoItem(toEditPosition).isDoneFlip();
+					populateListView();
+				}
+			});
+			
 			Button optButton = (Button) itemView.findViewById(R.id.optionsButton);
 			optButton.setOnClickListener(new OnClickListener(){
 				
 				//fill list
+				
 				@Override
 				public void onClick(View view){
 					
-					Toast.makeText(MainActivity.this,toEdit.getToDo(),Toast.LENGTH_LONG).show();
-					openOptions(toEdit);
+					
+					openOptions(toEditPosition);
 
 					//Toast.makeText(MainActivity.this,currentToDo.getToDo(),Toast.LENGTH_LONG).show();
 				}
@@ -113,15 +124,15 @@ public class MainActivity extends Activity {
 
 		
 
-	public void openOptions(ToDoItem toEdit) {
+	public void openOptions(int toEditPosition) {
+		Toast.makeText(MainActivity.this,""+toEditPosition,Toast.LENGTH_SHORT).show();
+		Toast.makeText(MainActivity.this,toDos.getToDoItem(toEditPosition).getToDo(),Toast.LENGTH_LONG).show();
 		Intent intent = new Intent(this,Options.class);
-		String chosenText = toEdit.getToDo();
-		//Toast.makeText(MainActivity.this, chosenText, Toast.LENGTH_LONG).show();
-		
 		
 		// from here ill return an int and edit accordingly
-		intent.putExtra(EXTRA_MESSAGE, chosenText);
+		intent.putExtra(EXTRA_MESSAGE, toEditPosition);
 		startActivityForResult(intent,RESULT_CODE_OPTIONS);
+		populateListView();
 		//Toast.makeText(MainActivity.this,""+choiceResult,Toast.LENGTH_LONG).show();
 		
 		return;
@@ -135,43 +146,21 @@ public class MainActivity extends Activity {
 		
 		if (resultCode== Activity.RESULT_CANCELED){
 			choiceResult = 0;
+			populateListView();
 			return;
 		}
-		switch(requestCode){
-		case RESULT_CODE_OPTIONS:
-			int answer = data.getIntExtra(Options.EXTRA_CHOICE,0);
-			choiceResult = answer;
-			//String pop = toEdit.getToDo();
-			//Toast.makeText(MainActivity.this,pop,Toast.LENGTH_LONG).show();
-			if (choiceResult==1){
-				
-				toDos.add(toEdit);
-			}
-			else if(choiceResult==2){
-				toDos.remove(toEdit);
-			}
-			else if(choiceResult ==3){
-				String pop = toEdit.getToDo();
-				Toast.makeText(MainActivity.this,pop+" has been archived",Toast.LENGTH_LONG).show();
-				//add to Archived list
-				ArchivedToDoList.setToDoItem(toEdit);
-				toDos.remove(toEdit);
-			}
-			else if (choiceResult == 4){
-				//setupEmailOption
-			}
-			populateListView();
+		
 			//Toast.makeText(MainActivity.this,"" + answer,Toast.LENGTH_LONG).show();
 			//String toDoCopied = currentToDo.getToDo();
 			//Boolean toDoDone = currentToDo.isDone();
 			//Toast.makeText(MainActivity.this,currentToDo.getToDo(),Toast.LENGTH_LONG).show();
 			//toDos.add(0, new ToDoItem(toDoCopied,toDoDone));
 				
-			//populateListView();
+		populateListView();
 				
-		}
-		
 	}
+		
+	
 
 
 
@@ -187,6 +176,7 @@ public class MainActivity extends Activity {
 			editText.setText("");
 		}
 	}
+	
 }
 
 	/*public void archivedLauncher(View v) {
