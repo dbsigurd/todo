@@ -106,9 +106,9 @@ public class ViewArchive extends Activity {
 			//Toast.makeText(MainActivity.this,currentToDo.getToDo(),Toast.LENGTH_LONG).show();
 			//toDos.add(0, new ToDoItem(toDoCopied,toDoDone));
 				
-		populateListView();
-				
+		populateListView();	
 	}
+	
 	public void goBack(View view){
 		Intent returnIntent = new Intent(this,MainActivity.class);
 		startActivity(returnIntent);

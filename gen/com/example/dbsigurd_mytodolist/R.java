@@ -29,25 +29,33 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int ArchiveButton=0x7f09000d;
+        public static final int ArchiveButton=0x7f090013;
         public static final int CancelButton=0x7f090005;
         public static final int CopyButton=0x7f090002;
         public static final int DeleteButton=0x7f090001;
         public static final int EmailButton=0x7f090004;
-        public static final int MassArchivedOptions=0x7f09000e;
+        public static final int EmailEditText=0x7f090014;
+        public static final int MassArchivedOptions=0x7f090016;
         public static final int MassOptionsButton=0x7f090007;
         public static final int ToDoBox=0x7f090008;
         public static final int UnarchiveButton=0x7f090003;
         public static final int ViewArchivedButton=0x7f09000a;
-        public static final int ViewUnarchived=0x7f090010;
-        public static final int action_settings=0x7f090013;
-        public static final int archivedListView=0x7f09000f;
+        public static final int ViewUnarchived=0x7f090018;
+        public static final int action_settings=0x7f09001b;
+        public static final int archiveAllButton=0x7f090010;
+        public static final int archivedListView=0x7f090017;
         public static final int button=0x7f090009;
+        public static final int button1=0x7f090015;
         public static final int clicked=0x7f090000;
         public static final int deleteAllButton=0x7f09000c;
-        public static final int optionsButton=0x7f090012;
+        public static final int emailAll=0x7f090012;
+        public static final int emailSelection=0x7f09000f;
+        public static final int optionsButton=0x7f09001a;
+        public static final int returnAllButton=0x7f090011;
+        public static final int stats1=0x7f09000d;
+        public static final int stats2=0x7f09000e;
         public static final int textView1=0x7f09000b;
-        public static final int toDoCheckBox=0x7f090011;
+        public static final int toDoCheckBox=0x7f090019;
         public static final int toDoListView=0x7f090006;
     }
     public static final class layout {
@@ -62,10 +70,11 @@ public final class R {
         public static final int archived__options=0x7f080000;
         public static final int archived_options=0x7f080001;
         public static final int display_options=0x7f080002;
-        public static final int main=0x7f080003;
-        public static final int mass_options=0x7f080004;
-        public static final int options=0x7f080005;
-        public static final int view_archive=0x7f080006;
+        public static final int email=0x7f080003;
+        public static final int main=0x7f080004;
+        public static final int mass_options=0x7f080005;
+        public static final int options=0x7f080006;
+        public static final int view_archive=0x7f080007;
     }
     public static final class string {
         public static final int AVT=0x7f060011;
@@ -91,6 +100,7 @@ public final class R {
         public static final int title_activity_archived__options=0x7f06001a;
         public static final int title_activity_archived_options=0x7f060018;
         public static final int title_activity_display_options=0x7f060007;
+        public static final int title_activity_email=0x7f06001b;
         public static final int title_activity_mass_options=0x7f060014;
         public static final int title_activity_options=0x7f060008;
         public static final int title_activity_view_archive=0x7f060010;

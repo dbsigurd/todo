@@ -17,14 +17,73 @@
         android:text="@string/massOptions"
         android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/deleteAllButton"
-      	android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp"
-        android:onClick="deleteAll"
-        android:text="@string/deleteAllButton" />
+    
+     <TextView
+         android:id="@+id/stats1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_centerHorizontal="true"
+         android:text="hi"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <TextView
+         android:id="@+id/stats2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/stats1"
+         android:layout_centerHorizontal="true"
+         android:text="Medium Text"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <Button
+         android:id="@+id/emailAll"
+         android:layout_width="230dp"
+         android:layout_height="40dp"
+         android:layout_alignLeft="@+id/emailSelection"
+         android:layout_below="@+id/emailSelection"
+         android:layout_marginTop="18dp"
+         android:onClick="emailAll"
+         android:text="Email ALL" />
+
+     <Button
+         android:id="@+id/deleteAllButton"
+         android:layout_width="230dp"
+         android:layout_height="40dp"
+         android:layout_below="@+id/textView1"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="18dp"
+         android:onClick="deleteAll"
+         android:text="@string/deleteAllButton" />
+
+     <Button
+         android:id="@+id/archiveAllButton"
+         android:layout_width="230dp"
+         android:layout_height="40dp"
+         android:layout_alignLeft="@+id/deleteAllButton"
+         android:layout_below="@+id/deleteAllButton"
+         android:layout_marginTop="19dp"
+         android:onClick="archiveAll"
+         android:text="Archive all" />
+
+     <Button
+         android:id="@+id/emailSelection"
+         android:layout_width="230dp"
+         android:layout_height="40dp"
+         android:layout_alignLeft="@+id/archiveAllButton"
+         android:layout_below="@+id/archiveAllButton"
+         android:layout_marginTop="16dp"
+         android:onClick="selectToDo"
+         android:text="Select to-dos to email" />
+
+     <Button
+         android:id="@+id/returnAllButton"
+         android:layout_width="230dp"
+         android:layout_height="40dp"
+         android:layout_alignLeft="@+id/emailAll"
+         android:layout_below="@+id/emailAll"
+         android:layout_marginTop="14dp"
+         android:onClick="returnToMain"
+         android:text="Return to main" />
 
 </RelativeLayout>

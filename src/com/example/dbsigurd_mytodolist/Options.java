@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ public class Options extends MainActivity {
 	ToDoList toDos = ToDoList.getInstance();
 	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
 	ToDoItem toEdit;
+	public String emailAddress = "Void";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,17 +45,42 @@ public class Options extends MainActivity {
 					
 			@Override
 			public void onClick(View v) {
-				int choiceClicked = 4;
-				Intent intent = new Intent();
-				intent.putExtra(EXTRA_CHOICE, choiceClicked);
-				setResult(Activity.RESULT_OK,intent);
-				finish();
+				if(emailAddress == "Void"){
+					Toast.makeText(Options.this, "Please enter an email address!", Toast.LENGTH_LONG).show();
+				}else{
+					Intent i = new Intent(Intent.ACTION_SEND);
+					i.setType("message/rfc822");
+					i.putExtra(Intent.EXTRA_EMAIL  , new String[]{emailAddress});
+					i.putExtra(Intent.EXTRA_SUBJECT, "To Dos!");
+					i.putExtra(Intent.EXTRA_TEXT   , createBody());
+					try{
+						startActivity(Intent.createChooser(i, "Send mail..."));
+					} catch (android.content.ActivityNotFoundException ex) {
+						Toast.makeText(Options.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+					}
+					int choiceClicked = 4;
+					Intent intent = new Intent();
+					intent.putExtra(EXTRA_CHOICE, choiceClicked);
+					setResult(Activity.RESULT_OK,intent);
+					finish();
 						// TODO Auto-generated method stub
-						
+				}
 			}
 		});
 	}
-
+	
+	private String createBody(){
+		boolean isDone = toEdit.isDone();
+		String body;
+		if (isDone){
+			body = "you have " + toEdit.getToDo() +" which is done!" ;
+		}else{
+			body = "you have " + toEdit.getToDo() +" which is not done!" ;
+		}
+		return body;
+		
+	}
+	
 	private void setupArchive() {
 		// TODO Auto-generated method stub
 		Button btn = (Button) findViewById(R.id.ArchiveButton);
@@ -105,11 +132,9 @@ public class Options extends MainActivity {
 		intent.putExtra(EXTRA_CHOICE, choiceClicked);
 		setResult(Activity.RESULT_OK,intent);
 		finish();
-				// TODO Auto-generated method stub
-				
-		
-			
+				// TODO Auto-generated method stub		
 	}
+	
 	private void setupCancel() {
 		Button btn = (Button) findViewById(R.id.CancelButton);
 		btn.setOnClickListener(new View.OnClickListener() {
@@ -120,11 +145,20 @@ public class Options extends MainActivity {
 				setResult(Activity.RESULT_CANCELED,intent);
 				finish();
 				// TODO Auto-generated method stub
-				
 			}
 		});
 	}
-
+	
+	public void addEmail(View view) {
+		EditText editText = (EditText) findViewById(R.id.EmailEditText);
+		String emailText = editText.getText().toString();
+		if (emailText.length()!=0){
+			emailAddress = emailText;
+			editText.setText("");
+		}
+		
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

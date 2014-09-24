@@ -24,10 +24,6 @@ public class ToDoItem {
 		return isDone;
 	}
 	public void isDoneFlip(){
-		if(isDone == true){
-			this.isDone = false;
-		}else{
-			this.isDone = true;
-		}
+		isDone = !isDone;
 	}
 }

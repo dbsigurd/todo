@@ -46,6 +46,10 @@
             android:name=".Archived_Options"
             android:label="@string/title_activity_archived__options" >
         </activity>
+        <activity
+            android:name=".EmailActivity"
+            android:label="@string/title_activity_email" >
+        </activity>
     </application>
 
 </manifest>

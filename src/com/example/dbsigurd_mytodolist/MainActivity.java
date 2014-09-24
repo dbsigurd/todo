@@ -90,8 +90,6 @@ public class MainActivity extends Activity {
 
 					//Toast.makeText(MainActivity.this,currentToDo.getToDo(),Toast.LENGTH_LONG).show();
 				}
-
-
 			});
 				
 			
@@ -161,8 +159,6 @@ public class MainActivity extends Activity {
 	public void openMassOptions(View view){
 		Intent massIntent = new Intent(this,MassOptions.class);
 		startActivityForResult(massIntent,2);
-		
-		
 	}
 	public void archivedLauncher(View v){
 		Intent archivedIntent = new Intent (this, ViewArchive.class);

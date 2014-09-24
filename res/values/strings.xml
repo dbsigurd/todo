@@ -28,5 +28,6 @@
     <string name="title_activity_archived_options">ArchivedOptions</string>
     <string name="UnarchiveButton">Unarchive</string>
     <string name="title_activity_archived__options">Archived_Options</string>
+    <string name="title_activity_email">EmailActivity</string>
 
 </resources>
