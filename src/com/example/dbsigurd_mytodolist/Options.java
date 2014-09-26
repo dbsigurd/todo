@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class Options extends MainActivity {
 	public static final String EXTRA_CHOICE = "the Choice";
 	public int positionChosen;
-	ToDoList toDos = ToDoList.getInstance();
+	ToDoList toDos = ToDoList.getInstance(getApplicationContext());
 	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
 	ToDoItem toEdit;
 	public String emailAddress = "Void";

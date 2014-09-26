@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MassOptions extends MainActivity {
-	ToDoList toDos = ToDoList.getInstance();
+	ToDoList toDos = ToDoList.getInstance(getApplicationContext());
 	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
 	int toDosTotal = toDos.size(); //unarchived total
 	int totalArch = archivedToDos.size();

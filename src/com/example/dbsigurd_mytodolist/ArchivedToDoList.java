@@ -3,21 +3,21 @@ package com.example.dbsigurd_mytodolist;
 import java.util.ArrayList;
 import java.util.List;
 
-import Data.FileDataManager;
-import Data.IDataManager;
+
 
 
 public class ArchivedToDoList {
-	private static IDataManager dataManager;
+
 	private static ArchivedToDoList firstInstance = null;
 	private List<ToDoItem> archivedToDos = new ArrayList<ToDoItem>();
 	private ArchivedToDoList() {};
+//	dataManager = new FileDataManager();
 	public static ArchivedToDoList getInstance(){
 		if(firstInstance == null){
 			synchronized(ArchivedToDoList.class){
 				if(firstInstance == null){
 					firstInstance = new ArchivedToDoList();
-					dataManager = new FileDataManager();
+					
 				}
 			}
 		}
@@ -55,9 +55,7 @@ public class ArchivedToDoList {
 		save();
 	}
 	public void save() {
-		
-		dataManager.saveToDos(archivedToDos,0);
-		dataManager.saveToDos(archivedToDos,1);
+
 		
    }
 	

@@ -17,7 +17,7 @@ public class ViewArchive extends Activity {
 	public static final int RESULT_CODE_OPTIONS = 1;
 	public static final String EXTRA_ANSWER = "Choice";
 	public final static String EXTRA_MESSAGE = "com.example.dbsigurd_mytodolist";
-	ToDoList toDos = ToDoList.getInstance();
+	ToDoList toDos = ToDoList.getInstance(getApplicationContext());
 	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
 	public ToDoItem currentToDo;
 	
