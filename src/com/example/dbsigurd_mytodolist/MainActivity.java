@@ -26,6 +26,7 @@ public class MainActivity extends Activity {
 	
 	
 	ToDoList toDos = ToDoList.getInstance(getApplicationContext());
+	
 	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
 	//public List<ToDoItem> toDoViewList = new ArrayList<ToDoItem>();
     //public ToDoItem toEdit;
