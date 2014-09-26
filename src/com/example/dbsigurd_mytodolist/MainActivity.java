@@ -2,6 +2,8 @@ package com.example.dbsigurd_mytodolist;
 
 
 
+import Data.FileDataManager;
+import Data.IDataManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +17,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 
+
+
 public class MainActivity extends Activity {
 	public static final int RESULT_CODE_OPTIONS = 1;
 	public static final String EXTRA_ANSWER = "Choice";
 	public final static String EXTRA_MESSAGE = "com.example.dbsigurd_mytodolist";
+	
+	private IDataManager dataManager;
+	
 	ToDoList toDos = ToDoList.getInstance();
 	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
 	//public List<ToDoItem> toDoViewList = new ArrayList<ToDoItem>();
@@ -26,23 +33,37 @@ public class MainActivity extends Activity {
     public ToDoItem currentToDo;
     //public int toEditPosition;
     public int choiceResult;
-	public ToDoItem milk = new ToDoItem("get milk", true);
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //load todoList
-        
-        
+        dataManager = new FileDataManager();
+        dataManager.loadToDo(0);
+		dataManager.loadToDo(1);
         populateListView();
         
         
     }
+    
+  
+    @Override
+	protected void onStart() {
+		super.onStart();
+		
+		dataManager.loadToDo(0);
+		dataManager.loadToDo(1);
+		//tweetsViewAdapter = new ArrayAdapter<AbstractTweet>(this, R.layout.list_item, tweets);
+		//oldTweetsList.setAdapter(tweetsViewAdapter);
+	}
 	
 	//use array adapter
 	public void populateListView() {
 		//populateToDoList();
 		// TODO Auto-generated method stub
+		dataManager.loadToDo(0);
+		dataManager.loadToDo(1);
 		ArrayAdapter<ToDoItem> adapter = new MyListAdapter();
 		//ArratAdapter<ToDoItem> adapter = new MyListAdapter();
 		ListView list = (ListView) findViewById(R.id.toDoListView);

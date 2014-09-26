@@ -80,7 +80,38 @@ public class MassOptions extends MainActivity {
 		Intent returnIntent = new Intent(this,MainActivity.class);
 		startActivity(returnIntent);
 	}
+	
 	public void emailAll(View view){
+		String body = "";
+		String message;
+		for(int i=0;i<toDos.size();i++){
+			if (toDos.getToDoItem(i).isDone()){
+				message = "You have " + toDos.getToDoItem(i).getToDo() +" which is done and not archived! " ;
+			}else{
+				message = "You have " + toDos.getToDoItem(i).getToDo() +" which is not done and not archived. ";
+			}
+			body= body+message;
+		}
+		for(int i=0;i<archivedToDos.size();i++){
+			if (toDos.getToDoItem(i).isDone()){
+				message = "You have " + archivedToDos.getToDoItem(i).getToDo() +" which is done and archived! " ;
+			}else{
+				message = "You have " + archivedToDos.getToDoItem(i).getToDo() +" which is not done and archived. ";
+			}
+			body= body+message;
+		}
+		Toast.makeText(this,body, Toast.LENGTH_SHORT).show();
+		Intent i = new Intent(Intent.ACTION_SEND);
+		i.setType("message/rfc822");
+		
+		i.putExtra(Intent.EXTRA_SUBJECT, "To Dos!");
+		
+		i.putExtra(Intent.EXTRA_TEXT, body);
+		try{
+			startActivity(Intent.createChooser(i, "Send mail..."));
+		} catch (android.content.ActivityNotFoundException ex) {
+			Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+		}
 		
 	}
 	
