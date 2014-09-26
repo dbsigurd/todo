@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.util.Log;
 
 
 public class ToDoList {
@@ -30,7 +29,6 @@ public class ToDoList {
 		if(firstInstance == null){
 			synchronized(ToDoList.class){
 				if(firstInstance == null){
-					Log.i("Devon", "tried init");
 					firstInstance = new ToDoList(context);
 					
 				}
