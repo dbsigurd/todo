@@ -1,0 +1,16 @@
+READ ME!
+
+This is a checklist application that enables users to email,archive,add,check,delete and copy to dos.
+
+This app starts at the MainActivity. The load function should load a file from memory but could not get it to work.On the home screen
+the user can add to do's or edit them. The three elipsies opens the options menu. The mass options button enables user to edit multiple to dos.
+and veiw archive does as the name implies.
+
+There is no presistent data, i could not for the life of me get it running. I tried what the lab should but nothing worked. The basic design of my app was use to lists of ToDoItems(item with a string and bool). These were implemented with singleton design pattern so i could access them from any where. I then used buttons and listner to navigate screens, each button pretty well does as it implies. List views were kept upto date when edited, and statistic where calculated when needed and can be seen in the More button on the main screen.
+
+
+Consultation - I discussed how my app ran with Ahmed Beshry, Wyatt flemming, and Troy Murpy(previous 301 student).
+ My code style came from Android development guide http://developer.android.com/training/index.html. youtube series http://www.youtube.com/user/DrBFraser/videos and http://en.wikipedia.org/wiki/Singleton_pattern for the implementation of singleton dessign principles. Save load functions game from 301 TA Guana.
+email dessign came from http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application. 
+
+
