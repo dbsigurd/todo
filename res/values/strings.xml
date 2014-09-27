@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">dbsigurd_MyToDoList</string>
+    <string name="app_name">ToDoList</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="ToDo">To do shown here</string>
@@ -29,5 +29,7 @@
     <string name="UnarchiveButton">Unarchive</string>
     <string name="title_activity_archived__options">Archived_Options</string>
     <string name="title_activity_email">EmailActivity</string>
+    <string name="title_activity_select_to_dos">SelectToDos</string>
+    <string name="select">Select the to-dos to email</string>
 
 </resources>

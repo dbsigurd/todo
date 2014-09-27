@@ -117,6 +117,8 @@ public class MassOptions extends MainActivity {
 	
 	public void selectToDo(View view){
 		//Intent select_intent
+		Intent intent = new Intent(this,SelectToDos.class);
+		startActivity(intent);
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

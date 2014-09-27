@@ -20,6 +20,10 @@ public final class R {
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
+
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
+    
          */
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
@@ -35,27 +39,30 @@ public final class R {
         public static final int DeleteButton=0x7f090001;
         public static final int EmailButton=0x7f090004;
         public static final int EmailEditText=0x7f090014;
-        public static final int MassArchivedOptions=0x7f090016;
+        public static final int MassArchivedOptions=0x7f090019;
         public static final int MassOptionsButton=0x7f090007;
         public static final int ToDoBox=0x7f090008;
         public static final int UnarchiveButton=0x7f090003;
         public static final int ViewArchivedButton=0x7f09000a;
-        public static final int ViewUnarchived=0x7f090018;
-        public static final int action_settings=0x7f09001b;
+        public static final int ViewUnarchived=0x7f09001b;
+        public static final int action_settings=0x7f09001e;
         public static final int archiveAllButton=0x7f090011;
-        public static final int archivedListView=0x7f090017;
+        public static final int archivedListView=0x7f09001a;
         public static final int button=0x7f090009;
         public static final int button1=0x7f090015;
+        public static final int choseArch=0x7f090017;
         public static final int clicked=0x7f090000;
         public static final int deleteAllButton=0x7f090010;
+        public static final int done=0x7f090018;
         public static final int emailAll=0x7f09000e;
         public static final int emailSelection=0x7f09000f;
-        public static final int optionsButton=0x7f09001a;
+        public static final int optionsButton=0x7f09001d;
         public static final int returnAllButton=0x7f090012;
+        public static final int selectListView=0x7f090016;
         public static final int stats1=0x7f09000c;
         public static final int stats2=0x7f09000d;
         public static final int textView1=0x7f09000b;
-        public static final int toDoCheckBox=0x7f090019;
+        public static final int toDoCheckBox=0x7f09001c;
         public static final int toDoListView=0x7f090006;
     }
     public static final class layout {
@@ -63,8 +70,9 @@ public final class R {
         public static final int activity_main=0x7f030001;
         public static final int activity_mass_options=0x7f030002;
         public static final int activity_options=0x7f030003;
-        public static final int activity_view_archive=0x7f030004;
-        public static final int item_view=0x7f030005;
+        public static final int activity_select_to_dos=0x7f030004;
+        public static final int activity_view_archive=0x7f030005;
+        public static final int item_view=0x7f030006;
     }
     public static final class menu {
         public static final int archived__options=0x7f080000;
@@ -74,7 +82,8 @@ public final class R {
         public static final int main=0x7f080004;
         public static final int mass_options=0x7f080005;
         public static final int options=0x7f080006;
-        public static final int view_archive=0x7f080007;
+        public static final int select_to_dos=0x7f080007;
+        public static final int view_archive=0x7f080008;
     }
     public static final class string {
         public static final int AVT=0x7f060011;
@@ -97,12 +106,14 @@ public final class R {
         public static final int massOptionButton=0x7f06000e;
         public static final int massOptions=0x7f060015;
         public static final int optionButton=0x7f060006;
+        public static final int select=0x7f06001d;
         public static final int title_activity_archived__options=0x7f06001a;
         public static final int title_activity_archived_options=0x7f060018;
         public static final int title_activity_display_options=0x7f060007;
         public static final int title_activity_email=0x7f06001b;
         public static final int title_activity_mass_options=0x7f060014;
         public static final int title_activity_options=0x7f060008;
+        public static final int title_activity_select_to_dos=0x7f06001c;
         public static final int title_activity_view_archive=0x7f060010;
         public static final int toDoHint=0x7f060005;
     }
