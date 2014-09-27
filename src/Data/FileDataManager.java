@@ -14,7 +14,11 @@ import android.util.Log;
 import com.example.dbsigurd_mytodolist.ArchivedToDoList;
 import com.example.dbsigurd_mytodolist.ToDoItem;
 import com.example.dbsigurd_mytodolist.ToDoList;
-
+/*
+ * tried to implent saving as taught in the lab,
+ * but could not get it to work. Gauna git hub
+ * lonely twitter is where the code/style is from
+ */
 public class FileDataManager implements IDataManager
 {
 

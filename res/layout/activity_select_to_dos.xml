@@ -16,34 +16,24 @@
         android:layout_centerHorizontal="true"
         android:text="@string/select" />
 
-    <ListView
-        android:id="@+id/selectListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/choseArch"
-        android:layout_below="@+id/textView1"
-        
-        android:layout_centerHorizontal="true"
-     
-        tools:listitem="@android:layout/simple_list_item_1" >
-
-    </ListView>
-
     <Button
         android:id="@+id/done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/selectListView"
-        android:layout_below="@+id/selectListView"
-        android:layout_marginRight="18dp"
-        android:text="Done" />
-
-    <Button
-        android:id="@+id/choseArch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/selectListView"
         android:layout_alignParentBottom="true"
-        android:text="Select archived todos" />
+        android:layout_alignParentRight="true"
+        android:onClick="sendEmail"
+        android:text="@string/Done" />
+
+    <ListView
+        android:id="@+id/selectListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/done"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true" >
+
+    </ListView>
 
 </RelativeLayout>

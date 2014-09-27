@@ -6,7 +6,14 @@ import java.util.List;
 import Data.FileDataManager;
 import Data.IDataManager;
 
-
+/*
+ * this class uses singleton design principle to enable me to call it from
+ * any class/activity I wish. I was taught this from a former 301 student
+ * Troy Murphy. the code should acredit style between him Dr Brian Fraser
+ * of SFU.
+ * 
+ * almost all functions are of an array list just addapted for To Do Item
+ */
 public class ArchivedToDoList {
 	private static IDataManager dataManager;
 	private static ArchivedToDoList firstInstance = null;

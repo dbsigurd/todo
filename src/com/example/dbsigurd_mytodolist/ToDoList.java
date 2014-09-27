@@ -6,7 +6,11 @@ import java.util.List;
 
 import Data.FileDataManager;
 import Data.IDataManager;
-
+/*
+ * inverse of archived to do list. 
+ * saving doesnt work =(
+ * but everything else does
+ */
 
 public class ToDoList {
 	private static IDataManager dataManager;

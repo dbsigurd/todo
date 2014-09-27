@@ -1,5 +1,9 @@
 package com.example.dbsigurd_mytodolist;
-
+/*
+ * custom to do item
+ * has to do string and bool
+ * also flip method
+ */
 public class ToDoItem {
 	private String toDo;
 	
