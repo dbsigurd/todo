@@ -1,129 +1,128 @@
 package Data;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.ArchivedToDoList;
+import models.ToDoItem;
+import models.ToDoList;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.dbsigurd_mytodolist.ArchivedToDoList;
-import com.example.dbsigurd_mytodolist.ToDoItem;
-import com.example.dbsigurd_mytodolist.ToDoList;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 /*
  * tried to implent saving as taught in the lab,
  * but could not get it to work. Gauna git hub
  * lonely twitter is where the code/style is from
  */
-public class FileDataManager implements IDataManager
+public class FileDataManager
 {
-
-	private static final String FILENAME = "file.sav"; // for to dos
-	private static final String FILENAME2 = "archfile.sav"; // for archives
-	ToDoList toDos = ToDoList.getInstance();
+	private String saveString = "Saving Tracker";
+	private static FileDataManager INSTANCE = null;
 	private Context context;
+	public ArrayList<ToDoItem> toDoList;
 
+	ToDoList toDos = ToDoList.getInstance();
 	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
+	
+	
+	
+	/**
+	 * singleton
+	 * Returns the single instance that is used to manipulate the 
+	 * current copy of getInstance that is currently available
+	 * @return the instance to be manipulated 
+	 */
 
-	@SuppressWarnings("unchecked")
-	public void loadToDo(int x)
-	{
-
-		Log.i("Devon", "TRIED LOADING");
-		x = 0;
-		// ArrayList<AbstractTweet> lts = new ArrayList<AbstractTweet>();
-		if (x == 0)
-		{
-			ArrayList<ToDoItem> lts = new ArrayList<ToDoItem>();
-
-			try
-			{
-				File fh = new File(context.getFilesDir(), FILENAME);
-				if (!fh.exists())
-				{
-					return;
-				}
-				FileInputStream fis = context.openFileInput(FILENAME);
-				ObjectInputStream ois = new ObjectInputStream(fis);
-
-				lts = (ArrayList<ToDoItem>) ois.readObject();
-				Log.i("loadings", "entered load");
-				for (int i = 0; i < lts.size(); i++)
-				{
-					toDos.add(lts.get(i));
-					Log.i("loadings", lts.get(i).getToDo());
-
-				}
-				fis.close();
-				ois.close();
-			} catch (Exception e)
-			{
-				Log.i("loadings", "Error casting");
-				e.printStackTrace();
-			}
-
-		} else
-		{
-			ArrayList<ToDoItem> lts = new ArrayList<ToDoItem>();
-
-			try
-			{
-				FileInputStream fis = new FileInputStream(FILENAME2);
-				ObjectInputStream ois = new ObjectInputStream(fis);
-
-				lts = (ArrayList<ToDoItem>) ois.readObject();
-				for (int i = 0; i < lts.size(); i++)
-				{
-
-					archivedToDos.add(lts.get(i));
-				}
-			} catch (Exception e)
-			{
-				Log.i("ToDos", "Error casting");
-				e.printStackTrace();
-			}
-
-		}
+	public FileDataManager(){
 	}
-
-	public void saveToDos(List<ToDoItem> lts, int x)
-	{
-
-		x = 0;
-
-		if (x == 0)
-		{ // save to dos
-			try
-			{
-				Log.i("Devon", "TRIED SAVING");
-				FileOutputStream fos = context.openFileOutput(
-						FileDataManager.FILENAME, Context.MODE_PRIVATE);
-				ObjectOutputStream oos = new ObjectOutputStream(fos);
-				oos.writeObject(lts);
-				fos.close();
-			} catch (Exception e)
-			{
-				Log.i("ToDos", "Error casting");
-				e.printStackTrace();
-			}
-		} else
-		{ // saves archives
-			try
-			{
-				FileOutputStream fos = new FileOutputStream(FILENAME2);
-				ObjectOutputStream oos = new ObjectOutputStream(fos);
-				oos.writeObject(lts);
-				fos.close();
-			} catch (Exception e)
-			{
-				Log.i("ToDos", "Error casting");
-				e.printStackTrace();
-			}
+	public void createContext (Context context1){
+		this.context=context1; //main menu context
+	}
+	
+	public static FileDataManager getInstance(){
+		if (INSTANCE == null){
+			INSTANCE = new FileDataManager();
 		}
+		return INSTANCE;
+	}
+	
+
+
+	public ArrayList<ToDoItem> loadToDo(String choice)
+	{
+		try{
+			File fh = new File(context.getFilesDir(), choice);
+			
+			Log.i("Loading", "load1");
+			if (!fh.exists() ){
+				Log.i("Loading","create new");
+				ArrayList<ToDoItem> toDos = new ArrayList<ToDoItem>();
+				return toDos;
+			}
+			FileInputStream fis = context.openFileInput(choice);
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+			
+			Log.i("Loading", "load2");
+			Gson gson = new Gson();
+		
+			Log.i("Loading", "load3");
+			Type listType = new TypeToken<ArrayList<ToDoItem>>(){}.getType();
+			Log.i("Loading", "load4");
+			toDoList = gson.fromJson(in, listType);
+			Log.i("Loading", "load5");
+			
+			
+			in.close();
+			fis.close();
+			Log.i("Loading", "Passed");
+			
+		} catch (FileNotFoundException e){
+			Log.i("Loading", "Filenotfound");
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return toDoList;
+	}
+	
+
+	public void saveToDos(List<ToDoItem> toDoList, String file)
+	{
+		Log.i(saveString,"start");
+		try {
+			Log.i(saveString, "fail1");
+			FileOutputStream fos =  context.openFileOutput(file,Context.MODE_PRIVATE);
+			Gson gson = new Gson();
+			Log.i(saveString, "fail2");
+			OutputStreamWriter osw = new OutputStreamWriter(fos);
+			Log.i(saveString, "fail4");
+			gson.toJson(toDoList,osw);
+			Log.i(saveString, "fail5");
+			osw.flush();
+			Log.i(saveString, "passed");
+			fos.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+		
 	}
 
 }

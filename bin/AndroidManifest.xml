@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.dbsigurd_mytodolist.MainActivity"
+            android:name="views.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,35 +23,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.dbsigurd_mytodolist.DisplayOptions"
+            android:name="models.DisplayOptions"
             android:label="@string/title_activity_display_options" >
         </activity>
         <activity
-            android:name="com.example.dbsigurd_mytodolist.Options"
+            android:name="views.Options"
             android:label="@string/title_activity_options" >
         </activity>
         <activity
-            android:name="com.example.dbsigurd_mytodolist.ViewArchive"
+            android:name="views.ViewArchive"
             android:label="@string/title_activity_view_archive" >
         </activity>
         <activity
-            android:name="com.example.dbsigurd_mytodolist.MassOptions"
+            android:name="views.MassOptions"
             android:label="@string/title_activity_mass_options" >
         </activity>
         <activity
-            android:name="com.example.dbsigurd_mytodolist.ArchivedOptions"
+            android:name="models.ArchivedOptions"
             android:label="@string/title_activity_archived_options" >
         </activity>
         <activity
-            android:name="com.example.dbsigurd_mytodolist.Archived_Options"
+            android:name="views.Archived_Options"
             android:label="@string/title_activity_archived__options" >
         </activity>
         <activity
-            android:name="com.example.dbsigurd_mytodolist.EmailActivity"
+            android:name="models.EmailActivity"
             android:label="@string/title_activity_email" >
         </activity>
         <activity
-            android:name="com.example.dbsigurd_mytodolist.SelectToDos"
+            android:name="views.SelectToDos"
             android:label="@string/title_activity_select_to_dos" >
         </activity>
     </application>
