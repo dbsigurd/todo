@@ -37,24 +37,29 @@
         android:layout_above="@+id/toDoListView"
         android:layout_alignParentRight="true"
         android:onClick="sendMessage"
+        android:background="@drawable/buttonshape"
         android:text="@string/Button" />
 
     <Button
         android:id="@+id/MassOptionsButton"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:onClick="openMassOptions"
+        android:background="@drawable/buttonshape"
+        
         android:text="@string/massOptionButton" />
 
     <Button
         android:id="@+id/ViewArchivedButton"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/toDoListView"
         android:onClick="archivedLauncher"
+        android:background="@drawable/buttonshape"
+        
         android:text="@string/VAB" />
 
 </RelativeLayout>

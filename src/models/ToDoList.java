@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Data.FileDataManager;
+import Data.dataController;
 /*
  *Class is used to represent a to do list
  *uses a singleton design principle
@@ -16,28 +17,32 @@ public class ToDoList {
 	//array of ToDoItems
 	private List<ToDoItem> ToDos = new ArrayList<ToDoItem>();
 	private static ToDoList firstInstance = null;
-	
+	private dataController data = new dataController();
 	public ToDoList() {	};
+	private final static String file = "unArchived";// unarchived save file
+
 	//singleton design principle 
 	public static ToDoList getInstance(){
 		if(firstInstance == null){
 			synchronized(ToDoList.class){
 				if(firstInstance == null){
 					firstInstance = new ToDoList();
-					FileDataManager dataManager = new FileDataManager();
-					
 				}
 			}
 		}
-	return firstInstance;
+		return firstInstance;
 	}
 	
+	public void setAllToDos(List<ToDoItem> newToDos){
+		ToDos = newToDos;
+	}
 	
 	public ToDoItem getToDoItem(int x){
 		return firstInstance.ToDos.get(x);
 	}
 	
 	public List<ToDoItem> getToDoList(){
+		ToDos= data.loadData(file);
 		return ToDos;
 	}
 	
@@ -62,8 +67,7 @@ public class ToDoList {
 	}
 	
 	public void save() {
-			
-			
-	   }
+			data.saveData(ToDos, file);
+   }
 	
 }

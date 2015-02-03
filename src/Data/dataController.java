@@ -1,30 +1,35 @@
 package Data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import models.ToDoItem;
 import android.content.Context;
+import android.util.Log;
 
 public class dataController {
-	public FileDataManager myDataManager = new FileDataManager();
+	public FileDataManager myDataManager;
+	private List<ToDoItem> loadList; 
 	
 	
 	public dataController(){
-		myDataManager.getInstance();
+		myDataManager = FileDataManager.getInstance();
 	}
 	
-	public void saveData(ArrayList<ToDoItem> todos, String file){
+	public void saveData(List<ToDoItem> todos, String file){
 		myDataManager.saveToDos(todos, file);
 		
 	}
-	public void loadData(String file){
-		ArrayList<ToDoItem> loadedList = myDataManager.loadToDo(file);
+	public List<ToDoItem> loadData(String file){
+		loadList = myDataManager.loadToDo(file);
+		return loadList;
 		// should just update singleton
-		return loadedList;
+		
 	}
-	public void setContext(Context context){
-		myDataManager.createContext(context);
+	public void setContext(Context context2){
+		myDataManager = FileDataManager.getInstance();
+		Log.i("context", context2.toString());
+		myDataManager.createContext(context2);
 	}
 	
-
 }

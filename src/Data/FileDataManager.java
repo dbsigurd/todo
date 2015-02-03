@@ -32,10 +32,8 @@ public class FileDataManager
 	private String saveString = "Saving Tracker";
 	private static FileDataManager INSTANCE = null;
 	private Context context;
-	public ArrayList<ToDoItem> toDoList;
+	public List<ToDoItem> toDoList;
 
-	ToDoList toDos = ToDoList.getInstance();
-	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
 	
 	
 	
@@ -49,7 +47,7 @@ public class FileDataManager
 	public FileDataManager(){
 	}
 	public void createContext (Context context1){
-		this.context=context1; //main menu context
+		INSTANCE.context=context1; //main menu context
 	}
 	
 	public static FileDataManager getInstance(){
@@ -61,7 +59,7 @@ public class FileDataManager
 	
 
 
-	public ArrayList<ToDoItem> loadToDo(String choice)
+	public List<ToDoItem> loadToDo(String choice)
 	{
 		try{
 			File fh = new File(context.getFilesDir(), choice);
@@ -69,8 +67,9 @@ public class FileDataManager
 			Log.i("Loading", "load1");
 			if (!fh.exists() ){
 				Log.i("Loading","create new");
-				ArrayList<ToDoItem> toDos = new ArrayList<ToDoItem>();
-				return toDos;
+				List<ToDoItem> newToDos = new ArrayList<ToDoItem>();
+				return newToDos;
+				
 			}
 			FileInputStream fis = context.openFileInput(choice);
 
@@ -80,7 +79,7 @@ public class FileDataManager
 			Gson gson = new Gson();
 		
 			Log.i("Loading", "load3");
-			Type listType = new TypeToken<ArrayList<ToDoItem>>(){}.getType();
+			Type listType = new TypeToken<List<ToDoItem>>(){}.getType();
 			Log.i("Loading", "load4");
 			toDoList = gson.fromJson(in, listType);
 			Log.i("Loading", "load5");
@@ -97,6 +96,9 @@ public class FileDataManager
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+		for(ToDoItem i:toDoList){
+			Log.i("testing", i.getToDo());
+		}
 		return toDoList;
 	}
 	

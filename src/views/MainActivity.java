@@ -5,6 +5,7 @@ import models.ToDoItem;
 import models.ToDoList;
 import Data.dataController;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,77 +19,75 @@ import android.widget.ListView;
 
 import com.example.dbsigurd_mytodolist.R;
 
-public class MainActivity extends Activity
-{
+public class MainActivity extends Activity {
 
 	/*
 	 * this is my main activity. it can take in to dos as needed it also
 	 * displays them using a coustum list view learned from Dr brian fraser of
-	 * SFU youtube videos. and a bit from the android development site.
-	 * IdataManager was taught in the lab by Gauna but could not get workign =(
+	 * SFU youtube videos and a bit from the android development site.
+	 * IdataManager was taught in the lab by Gauna but uses gson
 	 */
-	public static final int RESULT_CODE_OPTIONS = 1;
+	public static final int RESULT_CODE_OPTIONS = 1; // return of result
 	public static final String EXTRA_ANSWER = "Choice";
 	public final static String EXTRA_MESSAGE = "com.example.dbsigurd_mytodolist";
-	public dataController myDataController = new dataController();
-	
-	
-	ToDoList toDos = ToDoList.getInstance();
-	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
+	private final static String file = "unArchived";// unarchived save file
+
+	public dataController myDataController; 
+
 	// public List<ToDoItem> toDoViewList = new ArrayList<ToDoItem>();
 	// public ToDoItem toEdit;
 	public ToDoItem currentToDo;
 	// public int toEditPosition;
 	public int choiceResult;
+	ArchivedToDoList archivedToDos;
+	ToDoList toDos;
+	Context mainContext;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		// load todoList
-		myDataController.setContext(this.getBaseContext());
+		
+		myDataController = new dataController();
+		Context mainContext = getApplicationContext();
+    	myDataController.setContext(mainContext);
 		populateListView();
 
 	}
 
-	@Override
-	protected void onStart()
-	{
-		super.onStart();
-	}
 	// use array adapter
-	public void populateListView()
-	{
+	public void populateListView() {
 
-		// populates the list view
-
+//		// populates the list view
+//		myDataController.loadData("unArchived"); // loads the data
+//		myDataController.loadData("Archived"); // loads archived data
+		toDos = ToDoList.getInstance();
+		archivedToDos = ArchivedToDoList.getInstance();
+		
+			
 		ArrayAdapter<ToDoItem> adapter = new MyListAdapter();
-		myDataController.loadData("unArchived");
-		myDataController.loadData("Archived");
+
+			// sets customized list view
 		ListView list = (ListView) findViewById(R.id.toDoListView);
 		list.setAdapter(adapter);
+		
 	}
 
-	private class MyListAdapter extends ArrayAdapter<ToDoItem>
-	{
+	private class MyListAdapter extends ArrayAdapter<ToDoItem> {
 
-		public MyListAdapter()
-		{
-
+		public MyListAdapter() {
+			
 			super(MainActivity.this, R.layout.item_view, toDos.getToDoList());
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent)
-		{
+		public View getView(int position, View convertView, ViewGroup parent) {
 
 			// TODO Auto-generated method stub
 
 			View itemView = convertView;
-			if (itemView == null)
-			{
+			if (itemView == null) {
 				itemView = getLayoutInflater().inflate(R.layout.item_view,
 						parent, false);
 			}
@@ -100,27 +99,24 @@ public class MainActivity extends Activity
 					.findViewById(R.id.toDoCheckBox);
 			displayBox.setText(currentToDo.getToDo());
 			displayBox.setChecked(currentToDo.isDone());
-			displayBox.setOnClickListener(new OnClickListener()
-			{
+			displayBox.setOnClickListener(new OnClickListener() {
 
-				public void onClick(View view)
-				{
+				public void onClick(View view) {
 
 					toDos.getToDoItem(toEditPosition).isDoneFlip();
+					toDos.save();
 					populateListView();
 				}
 			});
 
 			Button optButton = (Button) itemView
 					.findViewById(R.id.optionsButton);
-			optButton.setOnClickListener(new OnClickListener()
-			{
+			optButton.setOnClickListener(new OnClickListener() {
 
 				// fill list
 
 				@Override
-				public void onClick(View view)
-				{
+				public void onClick(View view) {
 
 					openOptions(toEditPosition);
 
@@ -132,8 +128,7 @@ public class MainActivity extends Activity
 		}
 	}
 
-	public void openOptions(int toEditPosition)
-	{
+	public void openOptions(int toEditPosition) {
 
 		Intent intent = new Intent(this, Options.class);
 
@@ -148,14 +143,12 @@ public class MainActivity extends Activity
 
 	// gets called when started activity finishes
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 
-		if (resultCode == Activity.RESULT_CANCELED)
-		{
+		if (resultCode == Activity.RESULT_CANCELED) {
 			choiceResult = 0;
 			populateListView();
 			return;
@@ -165,13 +158,11 @@ public class MainActivity extends Activity
 
 	}
 
-	public void sendMessage(View view)
-	{
+	public void sendMessage(View view) {
 
 		EditText editText = (EditText) findViewById(R.id.ToDoBox);
 		String message = editText.getText().toString();
-		if (message.length() != 0)
-		{
+		if (message.length() != 0) {
 
 			ToDoItem newAdd = new ToDoItem(message, false);
 			toDos.add(newAdd);
@@ -180,19 +171,16 @@ public class MainActivity extends Activity
 		}
 	}
 
-	public void openMassOptions(View view)
-	{
+	public void openMassOptions(View view) {
 
 		Intent massIntent = new Intent(this, MassOptions.class);
 		startActivityForResult(massIntent, 2);
 	}
 
-	public void archivedLauncher(View v)
-	{
+	public void archivedLauncher(View v) {
 
 		Intent archivedIntent = new Intent(this, ViewArchive.class);
 		startActivity(archivedIntent);
 	}
 
 }
-

@@ -18,7 +18,6 @@ public class ArchivedToDoList extends ToDoList{
 			synchronized(ToDoList.class){
 				if(firstInstance == null){
 					firstInstance = new ArchivedToDoList();
-					FileDataManager dataManager = new FileDataManager();
 
 				}
 			}
