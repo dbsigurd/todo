@@ -3,73 +3,61 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import Data.FileDataManager;
+import Data.dataController;
 
-public class ArchivedToDoList extends ToDoList{
-	private List<ToDoItem> ToDos = new ArrayList<ToDoItem>();
-	
+public class ArchivedToDoList {
+	private List<ToDoItem> archivedToDos = new ArrayList<ToDoItem>();
 	private static ArchivedToDoList firstInstance = null;
+	private dataController data = new dataController();
+	public ArchivedToDoList() {	};
+	private final static String file = "Archived";// unarchived save file
 
-	public ArchivedToDoList() {};
-	
 	//singleton design principle 
 	public static ArchivedToDoList getInstance(){
 		if(firstInstance == null){
 			synchronized(ToDoList.class){
 				if(firstInstance == null){
 					firstInstance = new ArchivedToDoList();
-
 				}
 			}
 		}
 		return firstInstance;
 	}
-	@Override
-	public ToDoItem getToDoItem(int x) {
-		// TODO Auto-generated method stub
-		return super.getToDoItem(x);
+	
+	public void setAllToDos(List<ToDoItem> newToDos){
+		archivedToDos = newToDos;
 	}
-
-	@Override
-	public List<ToDoItem> getToDoList() {
-		// TODO Auto-generated method stub
-		return super.getToDoList();
+	
+	public ToDoItem getToDoItem(int x){
+		return firstInstance.archivedToDos.get(x);
 	}
-
-	@Override
-	public void add(ToDoItem y) {
-		// TODO Auto-generated method stub
-		super.add(y);
+	
+	public List<ToDoItem> getToDoList(){
+		archivedToDos= data.loadData(file);
+		return archivedToDos;
 	}
-
-	@Override
-	public void addnew(int loc, String toDo, boolean isDone) {
-		// TODO Auto-generated method stub
-		super.addnew(loc, toDo, isDone);
+	
+	public void add(ToDoItem y){
+		firstInstance.archivedToDos.add(0,y);
+		save();
 	}
-
-	@Override
-	public void remove(ToDoItem z) {
-		// TODO Auto-generated method stub
-		super.remove(z);
+	public void addnew(int loc, String toDo, boolean isDone){
+		firstInstance.archivedToDos.add(new ToDoItem(toDo,isDone));
+		save();
 	}
-
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return super.size();
+	public void remove(ToDoItem z){
+		firstInstance.archivedToDos.remove(z);
+		save();
 	}
-
-	@Override
-	public void deleteAll() {
-		// TODO Auto-generated method stub
-		super.deleteAll();
+	public int size(){
+		return firstInstance.archivedToDos.size();
 	}
-
-	@Override
+	public void deleteAll(){
+		firstInstance.archivedToDos.clear();
+		save();
+	}
+	
 	public void save() {
-		// TODO Auto-generated method stub
-		super.save();
-	}
-
+			data.saveData(archivedToDos, file);
+   }
 }

@@ -9,6 +9,7 @@ import com.example.dbsigurd_mytodolist.R.id;
 import com.example.dbsigurd_mytodolist.R.layout;
 import com.example.dbsigurd_mytodolist.R.menu;
 
+import Data.dataController;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,22 +35,29 @@ public class ViewArchive extends Activity
 	public static final int RESULT_CODE_OPTIONS = 1;
 	public static final String EXTRA_ANSWER = "Choice";
 	public final static String EXTRA_MESSAGE = "com.example.dbsigurd_mytodolist";
-	ToDoList toDos = ToDoList.getInstance();
+	private final static String file = "Archived";// unarchived save file
+
 	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
 	public ToDoItem currentToDo;
 
+	public dataController myDataController; 
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_archive);
+		myDataController = new dataController();
+		
 		populateListView();
 	}
 
 	public void populateListView()
 	{
-
+		archivedToDos = ArchivedToDoList.getInstance();
+		
 		ArrayAdapter<ToDoItem> adapter = new MyListAdapter();
 		ListView list = (ListView) findViewById(R.id.archivedListView);
 		list.setAdapter(adapter);
@@ -110,7 +118,11 @@ public class ViewArchive extends Activity
 			return itemView;
 		}
 	}
+	public void openMassOptions(View view) {
 
+		Intent massIntent = new Intent(this, MassOptions.class);
+		startActivityForResult(massIntent, 2);
+	}
 	// Find the Todo
 	public void openArchivedOptions(int toEditPosition)
 	{

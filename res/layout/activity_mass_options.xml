@@ -44,6 +44,7 @@
          android:layout_below="@+id/emailSelection"
          android:layout_marginTop="18dp"
          android:onClick="emailAll"
+         android:background="@drawable/buttonshape"
          android:text="Email ALL" />
 
      <Button
@@ -51,6 +52,7 @@
          android:layout_width="230dp"
          android:layout_height="40dp"
          android:layout_below="@+id/textView1"
+         android:background="@drawable/buttonshape"
          android:layout_centerHorizontal="true"
          android:layout_marginTop="18dp"
          android:onClick="deleteAll"
@@ -63,6 +65,7 @@
          android:layout_alignLeft="@+id/deleteAllButton"
          android:layout_below="@+id/deleteAllButton"
          android:layout_marginTop="19dp"
+         android:background="@drawable/buttonshape"
          android:onClick="archiveAll"
          android:text="Archive all" />
 
@@ -74,6 +77,7 @@
          android:layout_below="@+id/archiveAllButton"
          android:layout_marginTop="16dp"
          android:onClick="selectToDo"
+         android:background="@drawable/buttonshape"
          android:text="Select to-dos to email" />
 
      <Button
@@ -84,6 +88,7 @@
          android:layout_below="@+id/emailAll"
          android:layout_marginTop="14dp"
          android:onClick="returnToMain"
+         android:background="@drawable/buttonshape"
          android:text="Return to main" />
 
 </RelativeLayout>

@@ -10,12 +10,14 @@
 
     <Button
         android:id="@+id/MassArchivedOptions"
-        android:layout_width="145dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="@string/massOptionButton"
-        />
+        android:layout_alignParentStart="true"
+        android:background="@drawable/buttonshape"
+        android:onClick="openMassOptions"
+        android:text="@string/massOptionButton" />
 
     <ListView
         android:id="@+id/archivedListView"
@@ -23,18 +25,21 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/MassArchivedOptions"
         android:layout_alignParentLeft="true"
+      	android:layout_alignParentStart="true"
+        
         android:layout_alignParentTop="true" >
 
     </ListView>
 
     <Button
         android:id="@+id/ViewUnarchived"
-        android:layout_width="145dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/buttonshape"
         android:onClick="goBack"
-        android:text="@string/goBack"
-    	 />
+        android:text="@string/goBack" />
 
 </RelativeLayout>

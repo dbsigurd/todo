@@ -28,8 +28,8 @@ public class Options extends MainActivity
 	 */
 	public static final String EXTRA_CHOICE = "the Choice";
 	public int positionChosen;
-	ToDoList toDos = ToDoList.getInstance();
-	ArchivedToDoList archivedToDos = ArchivedToDoList.getInstance();
+	ToDoList toDos;
+	ArchivedToDoList archivedToDos;
 	ToDoItem toEdit;
 	public String emailAddress = "Void";
 
@@ -39,7 +39,8 @@ public class Options extends MainActivity
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_options);
-
+		toDos = ToDoList.getInstance();
+		archivedToDos = ArchivedToDoList.getInstance();
 		// Get the message from the intent
 		Intent intent = getIntent();
 		int positionChosen = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);

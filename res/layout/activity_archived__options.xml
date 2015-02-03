@@ -22,6 +22,7 @@
         android:layout_height="40dp"
         android:layout_below="@+id/clicked"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/buttonshape"
         android:layout_marginTop="48dp"
         android:onClick="Delete"
         android:text="@string/DeleteButton" />
@@ -32,6 +33,7 @@
         android:layout_height="40dp"
         android:layout_alignLeft="@+id/DeleteButton"
         android:layout_below="@+id/DeleteButton"
+        android:background="@drawable/buttonshape"
         android:layout_marginTop="16dp"
         android:onClick="Copy"
         android:text="@string/CopyButton" />
@@ -40,6 +42,7 @@
         android:id="@+id/UnarchiveButton"
         android:layout_width="180dp"
         android:layout_height="40dp"
+        android:background="@drawable/buttonshape"
         android:layout_alignLeft="@+id/CopyButton"
         android:layout_below="@+id/CopyButton"
         android:layout_marginTop="16dp"
@@ -50,6 +53,8 @@
         android:id="@+id/EmailButton"
         android:layout_width="180dp"
         android:layout_height="40dp"
+        android:background="@drawable/buttonshape"
+        
         android:layout_alignLeft="@+id/UnarchiveButton"
         android:layout_below="@+id/UnarchiveButton"
         android:layout_marginTop="16dp"
@@ -59,6 +64,7 @@
         android:id="@+id/CancelButton"
         android:layout_width="180dp"
         android:layout_height="40dp"
+        android:background="@drawable/buttonshape"
         android:layout_alignLeft="@+id/EmailButton"
         android:layout_below="@+id/EmailButton"
         android:layout_marginTop="16dp"

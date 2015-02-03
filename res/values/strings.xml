@@ -17,7 +17,7 @@
     <string name="CancelButton">Cancel</string>
     <string name="massOptionButton">More options!</string>
     <string name="VAB">View Archives</string>
-    <string name="title_activity_view_archive">ViewArchive</string>
+    <string name="title_activity_view_archive">Archived To Dos</string>
     <string name="AVT">Archived To-Dos</string>
     <string name="Return">Return</string>
     <string name="ArchivedOptions">Options</string>
